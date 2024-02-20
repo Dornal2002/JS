@@ -1,0 +1,64 @@
+1.What is the difference between ++i and i++?
+=> “++i” is known as the pre-increment operator, which increments the value of 'i' immediately and returns the incremented value. On the other hand, “i++” is known as the post-increment operator, which increments the value of 'i' but returns the original value that 'i' held before being incremented.
+
+--------------------
+2.What do you think would happen if you pass an index beyond the range of the string? Or if you pass a negative index? Try it out.
+=>In JavaScript, when you pass an index beyond the range of a string or a negative index to access characters in a string, the behavior depends on the operation you're performing:
+
+1.Accessing Characters using Positive Index:
+If you try to access a character using an index that is beyond the length of the string, JavaScript will return undefined.
+
+2.Accessing Characters using Negative Index:
+JavaScript does not support negative indexing for strings directly like some other programming languages (e.g., Python). Attempting to access a string with a negative index will return undefined.
+--------------------
+3.Do you think JSON.stringify would work for arrays as well? What about nested objects? What happens if we pass numbers, strings, undefined, null to JSON.stringify?
+=> Yes, JSON.stringify() does work for arrays as well as for objects, including nested objects. It converts JavaScript values (arrays, objects, strings, numbers, booleans, null, and undefined) into JSON strings.
+
+Here's how JSON.stringify() behaves with different types of values:
+1.Arrays:
+Arrays are converted to a JSON string representation of the array contents.
+let arr = [1, 2, 3];
+console.log(JSON.stringify(arr)); // Outputs: "[1,2,3]"
+
+2.Nested Objects:
+Nested objects are also converted to their JSON string representation.
+let obj = { key: { nestedKey: 'value' } };
+console.log(JSON.stringify(obj)); // Outputs: "{"key":{"nestedKey":"value"}}"
+
+3.Numbers, Strings, Booleans, null:
+These primitive types are converted to their respective JSON string representations.
+console.log(JSON.stringify(42));      // Outputs: "42"
+console.log(JSON.stringify("hello")); // Outputs: ""hello""
+console.log(JSON.stringify(true));    // Outputs: "true"
+console.log(JSON.stringify(null));    // Outputs: "null"
+console.log(JSON.stringify(undefined)); // Outputs: undefined
+
+4.undefined:
+undefined values are not included in the resulting JSON string. Instead, they are simply omitted.
+console.log(JSON.stringify(undefined)); // Outputs: undefined
+
+5.Functions:
+Functions cannot be directly serialized into JSON. If a function is encountered, it will be omitted or converted to null in the resulting JSON string.
+let obj = { func: function() { console.log('hello'); } };
+console.log(JSON.stringify(obj)); // Outputs: {}
+
+----------------------------
+4.What happens if you pass a regular/invalid JSON string to JSON.parse? What will happen if such an invalid function runs in the program? Will other parts of the code execute correctly after that?
+=> When you pass a regular or invalid JSON string to JSON.parse, its behavior depends on the nature of the string:
+
+1.Valid JSON string:
+If the string passed to JSON.parse is valid JSON, it will be successfully parsed, and the corresponding JavaScript object or value will be returned.
+let jsonString = '{"name": "John", "age": 30}';
+let parsedObject = JSON.parse(jsonString);
+console.log(parsedObject); // Outputs: { name: "John", age: 30 }
+
+2.Invalid JSON string:
+If the string passed to JSON.parse is not valid JSON, it will throw a SyntaxError.
+let invalidJsonString = '{"name": "John", "age": 30,}';
+try {
+    let parsedObject = JSON.parse(invalidJsonString);
+    console.log(parsedObject);
+} catch (error) {
+    console.error(error); // Outputs: SyntaxError: Unexpected token } in JSON at position 26
+}
+In general, the impact of an invalid JSON string or any other error in a program depends on how the program is structured and how errors are handled within it. Proper error handling and defensive programming practices can help mitigate the impact of such errors on the overall functionality of the program.
