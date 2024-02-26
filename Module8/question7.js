@@ -8,4 +8,4 @@ const fetchData= async()=>{
 
 fetchData()
 .then(data=>console.log(data))
-.catch(data=>console.log(data))
+.catch(data=>console.log(error))
