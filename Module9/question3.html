@@ -35,7 +35,7 @@
 
             console.log(title, content, author, email)
 
-            if (title.length !== 0 && content.length !== 0 && author.length !== 0 && email.length !== 0) {
+            if (title.length && content.length && author.length && email.length) {
 
 
                 fetch("https://reqres.in/api/posts", {

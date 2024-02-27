@@ -19,15 +19,21 @@ function sortByName(){
 }
 
 function search(){
-    let str = document.getElementById("filter").value
-    let filteredUsers = []
-    users.map(user => {
-        let vals = Object.values(user)
-        if(vals.includes(str)){
-            filteredUsers.push(user)
-        }
-    })
-    renderTable(filteredUsers)
+    // let str = document.getElementById("filter").value
+    // let filteredUsers = []
+    // users.map(user => {
+    //     let vals = Object.values(user)
+    //     if(vals.includes(str)){
+    //         filteredUsers.push(user)
+    //     }
+    // })
+    // renderTable(filteredUsers)
+    let str = document.getElementById("filter").value.trim().toLowerCase();
+    let filteredUsers = users.filter(user => {
+    let vals = Object.values(user);
+    return vals.some(val => val.toString().toLowerCase().includes(str));
+});
+renderTable(filteredUsers);
 }
 
 function getAllUsers(){
